@@ -18,6 +18,10 @@ def scrape_all():
         "last_modified": dt.datetime.now()
     }
 
+    browser.quit()
+    return data
+
+
 # Set the executable path and initialize the chrome browser in splinter:
 executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
 browser = Browser('chrome', **executable_path)
@@ -50,14 +54,14 @@ def mars_news(browser):
 try:
     slide_elem = news_soup.select_one("ul.item_list li.slide")
 
-    # Use the parent element to find the first 'a' tag and save it as 'news_title'
+        # Use the parent element to find the first 'a' tag and save it as 'news_title'
     news_title = slide_elem.find("div", class_="content_title").get_text()
 
-    # Use the parent element to find the papagraph text
-    news_p = slide_elem.find("div", class="article_teaser_body").get_text()
+        # Use the parent element to find the papagraph text
+    news_p = slide_elem.find("div", class_="article_teaser_body").get_text()
+except AttributeError:
+    return None, None
 
-    except AttributeError:
-        return None, None
 
 # Featured Images
 
@@ -121,9 +125,6 @@ df.columns=['description', 'value']
 df.set_index('description', inplace=True)
 df.to_html()
 
-browser.quit()
-return data
-
-id __name__ == "__main__":
+if __name__ == "__main__":
     # If running as script, print scraped data
     print(scrape_all())
