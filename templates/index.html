@@ -46,7 +46,12 @@
             <!-- SECTION FOR FEATURED IMAGE AND FACTS TABLE -->
             <div class="row" id="mars-featured-image">                
                 <div class="col-md-8">
-                    <h2>Featured Mars Image</h2>
+                    <style>
+                                h2.red_text {
+                                    color: red;
+                                }
+                            </style>
+                    <h2 style="color: red">Featured Mars Image</h2>
                     <!-- IF IMAGES IS FALSE/NONE/NON-EXISTANT, THEN DEFAULT TO ERROR MESSAGE -->
                     <img
                         src="{{ mars.featured_image | default('static/images/error.png', true) }}"
