@@ -49,32 +49,32 @@ def featured_image(browser):
     # Visit the NASA Mars site:
     url = 'https://www.jpl.nasa.gov/spaceimages/?search=&catagory=Mars'
     browser.visit(url)
-
+    
     # Click on the button to get the full size image:
     full_image_elem = browser.find_by_id('full_image')
     full_image_elem.click()
-    
-    # Click on the 'More Info' button:
     browser.is_element_present_by_text('more info', wait_time=1)
+
+   
+    
+    # Click on the 'More Info' button:  
     more_info_elem = browser.links.find_by_partial_text('more info')
     more_info_elem.click()
-    
-    # Parse the results:
+
+     # Parse the results:
     html = browser.html
     img_soup = BeautifulSoup(html, 'html.parser')
-     
-    # find the relative image url
-    img_url_rel = img_soup.select_one('figure.lede a img')
     
-    # Use try-except to keep program running if an image retrieval error:
+    # find the relative image url
+    img_url_rel = img_soup.select_one('figure.lede a img').get('src')
+
     try:
-        img_url = url.get("src")
+        # Return the full-size image:    
+        img_url = f'https://www.jpl.nasa.gov{img_url_rel}'
+        
     except AttributeError:     
         return None
-
-    # Return the full-size image:    
-    img_url = f'https://www.jpl.nasa.gov{img_url_rel}'
-    return img_url  
+    return img_url
 
 def mars_facts():
 

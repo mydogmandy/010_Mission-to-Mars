@@ -6,12 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Mission to Mars</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <style type="text/css">
+    .jumbotron{
+        margin-top: 20px;
+        background-image: url(https://www.nasa.gov/sites/default/files/thumbnails/image/stsci-h-p2034a-f-1920x1080_0.png);
+        background-size: cover;
+        color: white;
+    }
+    </style>
 </head>
     <body>
         <div class="container">
             <!-- ADD JUMBOTRON TO HEADER-->
             <div class="jumbotron text-center">
                 <h1>Mission to Mars</h1>
+                <p><em>Webscraping with HTML/CSS</em></p>
                 <!-- ADD A BUTTON TO ACTIVATE THE SCRAPING2 SCRIPT-->
                 <p><a class="btn btn-danger btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
             </div>
@@ -21,7 +30,12 @@
                 <div class="col-md-12">
                     <div class="media">
                         <div class="media-body">
-                            <h2>Latest Mars News</h2>
+                            <style>
+                                h2.red_text {
+                                    color: red;
+                                }
+                            </style>
+                            <h2 style="color: red">Latest Mars News</h2>
                             <h4 class="media-heading">{{mars.news_title}}</h4>
                             <p>{{ mars.news_paragraph }}</p>
                         </div>
@@ -35,12 +49,12 @@
                     <h2>Featured Mars Image</h2>
                     <!-- IF IMAGES IS FALSE/NONE/NON-EXISTANT, THEN DEFAULT TO ERROR MESSAGE -->
                     <img
-                        src="{{mars.featured_image | default('static/images/error.png', true) }}"
+                        src="{{ mars.featured_image | default('static/images/error.png', true) }}"
                         class="img-responsive"
                         alt="Responsive image"
                     />
                 </div>
-            
+                <br>
                 <div class="col-md-4">
                     <!-- MARS FACTS -->
                     <div class="row" id="mars-facts">
