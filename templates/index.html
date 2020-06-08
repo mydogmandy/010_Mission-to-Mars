@@ -24,7 +24,7 @@
                 <!-- ADD A BUTTON TO ACTIVATE THE SCRAPING2 SCRIPT-->
                 <p><a class="btn btn-danger btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
             </div>
-    
+        
             <!-- ADD A SECTION FOR MARS NEWS -->
             <div class="row" id="mars-news">
                 <div class="col-md-12">
@@ -46,12 +46,7 @@
             <!-- SECTION FOR FEATURED IMAGE AND FACTS TABLE -->
             <div class="row" id="mars-featured-image">                
                 <div class="col-md-8">
-                    <style>
-                                h2.red_text {
-                                    color: red;
-                                }
-                            </style>
-                    <h2 style="color: red">Featured Mars Image</h2>
+                    <h2>Featured Mars Image <span class="badge badge-secondary">NEW</span></h2>
                     <!-- IF IMAGES IS FALSE/NONE/NON-EXISTANT, THEN DEFAULT TO ERROR MESSAGE -->
                     <img
                         src="{{ mars.featured_image | default('static/images/error.png', true) }}"
@@ -62,12 +57,27 @@
                 <br>
                 <div class="col-md-4">
                     <!-- MARS FACTS -->
-                    <div class="row" id="mars-facts">
+                    <div class="text-center" id="mars-facts">
                         <h4>Mars Facts</h4>
                         {{ mars.facts | safe }}
                     </div>
                 </div>
             </div>
+            <!-- Mars Hemispheres -->
+            <div class='row' id='mars-hemishperes'>
+                <div class='text-center'>
+                    <h3>Mars Hemispheres</h3>
+                    <div class="card">
+                        <div class="card-body">
+                          <h4 class="card-title[1]">Card title</h4>
+                          <p class="card-text">Some example text. Some example text.</p>
+                          <a href="#" class="card-link">Card link</a>
+                          <a href="#" class="card-link">Another link</a>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
         </div>
     </body>
 </html>
