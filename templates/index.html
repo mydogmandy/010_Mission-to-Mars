@@ -64,20 +64,19 @@
                 </div>
             </div>
             <!-- Mars Hemispheres -->
-            <div class='row' id='mars-hemishperes'>
+            <div class='row' id='mars-hemispheres'>
                 <div class='text-center'>
-                    <h3>Mars Hemispheres</h3>
-                    <div class="card">
-                        <div class="card-body">
-                          <h4 class="card-title[1]">Card title</h4>
-                          <p class="card-text">Some example text. Some example text.</p>
-                          <a href="#" class="card-link">Card link</a>
-                          <a href="#" class="card-link">Another link</a>
-                        </div>
-                      </div>
+                    <h1>Mars Hemispheres</h1>
+                    {% for hemisphere in mars.hemispheres %}
+                        <h3 class='col-md-3'>{{hemisphere.title}}</h3>
+                    {% endfor %}
+                    {% for hemisphere in mars.hemispheres %}
+                        <img src="{{hemisphere.img_url}}" class='col-md-3 img-thumbnail'/>
+                    {% endfor %}
                 </div>
             </div>
-
         </div>
     </body>
 </html>
+
+
