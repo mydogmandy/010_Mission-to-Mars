@@ -10,6 +10,7 @@
     .jumbotron{
         margin-top: 20px;
         background-image: url(https://www.nasa.gov/sites/default/files/thumbnails/image/stsci-h-p2034a-f-1920x1080_0.png);
+        opacity: 0.95;
         background-size: cover;
         color: white;
     }
@@ -21,21 +22,22 @@
             <div class="jumbotron text-center">
                 <h1>Mission to Mars</h1>
                 <p><em>Webscraping with HTML/CSS</em></p>
-                <!-- ADD A BUTTON TO ACTIVATE THE SCRAPING2 SCRIPT-->
-                <p><a class="btn btn-danger btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
-            </div>
-        
+                <!-- ADD BUTTON TO ACTIVATE THE FEATURED IMAGE SCRIPT-->
+                <a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Featured Image</a>
+                <!-- ADD BUTTON TO ACTIVATE THE FEATURED HEMISPHERES SCRIPT-->
+                <!-- SEPERATE HEMISPHERES RETRIEVAL BUTTON ADDED DUE TO INSTABILITY OF USGS SITE-->
+                <a class="btn btn-danger btn-lg" href="/hemispheres" role="button">Get Hemispheres</a>
+            </div>       
             <!-- ADD A SECTION FOR MARS NEWS -->
             <div class="row" id="mars-news">
                 <div class="col-md-12">
                     <div class="media">
                         <div class="media-body">
                             <style>
-                                h2.red_text {
-                                    color: red;
+                                h1 {text-shadow:2px 2px 5px red;
                                 }
                             </style>
-                            <h2 style="color: red">Latest Mars News</h2>
+                            <h1>Latest Mars News:</h1>
                             <h4 class="media-heading">{{mars.news_title}}</h4>
                             <p>{{ mars.news_paragraph }}</p>
                         </div>
@@ -46,7 +48,12 @@
             <!-- SECTION FOR FEATURED IMAGE AND FACTS TABLE -->
             <div class="row" id="mars-featured-image">                
                 <div class="col-md-8">
-                    <h2>Featured Mars Image <span class="badge badge-secondary">NEW</span></h2>
+                    <style>
+                        h2.blue_text {
+                            color: blue;
+                            }
+                            </style>
+                    <h2 style="color: blue">Featured Mars Image <span class="badge badge-secondary">NEW</span></h2>
                     <!-- IF IMAGES IS FALSE/NONE/NON-EXISTANT, THEN DEFAULT TO ERROR MESSAGE -->
                     <img
                         src="{{ mars.featured_image | default('static/images/error.png', true) }}"
@@ -66,7 +73,12 @@
             <!-- Mars Hemispheres -->
             <div class='row' id='mars-hemispheres'>
                 <div class='text-center'>
-                    <h1>Mars Hemispheres</h1>
+                    <style>
+                        h2.blue_text {
+                            color: red;
+                            }
+                            </style>
+                    <h2 style="color: red">Mars Hemispheres</h2>
                     {% for hemisphere in mars.hemispheres %}
                         <h3 class='col-md-3'>{{hemisphere.title}}</h3>
                     {% endfor %}
@@ -74,7 +86,7 @@
                         <img src="{{hemisphere.img_url}}" class='col-md-3 img-thumbnail'/>
                     {% endfor %}
                 </div>
-            </div>
+            </div>    
         </div>
     </body>
 </html>

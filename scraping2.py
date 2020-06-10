@@ -18,14 +18,27 @@ def scrape_all():
         "news_paragraph": news_paragraph,
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
-        "hemispheres": mars_hemispheres(browser),
+        #"hemispheres": mars_hemispheres(browser),
         "last_modified": dt.datetime.now()
         }
     
     # Quit the browser & retrieve the data gathered:
     browser.quit()    
     return data
-    
+
+def scrape_mars():
+    # Initiate headless driver for deployment
+    browser = Browser("chrome", executable_path="chromedriver", headless=True)
+
+    # Run all scraping functions and store results in dictionary
+    data2 = {
+        "hemispheres": scrape_hemispheres(browser)
+    }
+
+    # Quit the browser & retrieve the data gathered:
+    browser.quit()    
+    return data2
+
 def mars_news(browser):
     # Visit the mars nasa news site
     url = 'https://mars.nasa.gov/news/'
@@ -96,16 +109,16 @@ def mars_facts():
     return df.to_html(classes="table table-striped")
     
 
-def mars_hemispheres(browser):
+def scrape_hemispheres(browser):
     # Visit the Astrogeology USGS site:
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
 
-    # Create empty dictionary to hold hemisphere url's & titles:
+    # Create empty list to hold hemisphere url's & titles:
     hemisphere_list = []
 
     # Find the pictures to click on to get the full size images:
-    browser.is_element_present_by_css("thumb", wait_time=1)
+    browser.is_element_present_by_css("thumb", wait_time=2)
     thumbnails = browser.find_by_tag('h3')
 
     # Create a loop to capture all 4 heisphere images & titles:
@@ -133,7 +146,7 @@ def mars_hemispheres(browser):
         browser.back()
 
         # Find the next thumbnail & go through the process until all 4 are returned:
-        browser.is_element_present_by_css("thumb", wait_time=1)
+        browser.is_element_present_by_css("thumb", wait_time=2)
         thumbnails = browser.find_by_tag('h3')
 
     # Return the completed list with all 4 hemispheres & titles:
@@ -144,4 +157,5 @@ if __name__ == "__main__":
 
     # If running as script, print scraped data using prettyprint:
     print(scrape_all())
+    print(scrape_mars())
 
