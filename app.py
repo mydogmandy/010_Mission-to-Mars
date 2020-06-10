@@ -20,14 +20,5 @@ def scrape():
    mars.update({}, mars_data, upsert=True)
    return "Scraping Successful!"
 
-@app.route("/hemispheres")
-def hemispheres():
-   mars = mongo.db.mars
-   hemispheres_data = scraping2.scrape_mars()
-   mars.update({}, hemispheres_data, upsert=True)
-   return "We have hemispheres!"
-
-
-
 if __name__ == "__main__":
    app.run(debug=True)

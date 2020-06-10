@@ -18,26 +18,13 @@ def scrape_all():
         "news_paragraph": news_paragraph,
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
-        #"hemispheres": mars_hemispheres(browser),
+        "hemispheres": mars_hemispheres(browser),
         "last_modified": dt.datetime.now()
         }
     
     # Quit the browser & retrieve the data gathered:
     browser.quit()    
     return data
-
-def scrape_mars():
-    # Initiate headless driver for deployment
-    browser = Browser("chrome", executable_path="chromedriver", headless=True)
-
-    # Run all scraping functions and store results in dictionary
-    data2 = {
-        "hemispheres": scrape_hemispheres(browser)
-    }
-
-    # Quit the browser & retrieve the data gathered:
-    browser.quit()    
-    return data2
 
 def mars_news(browser):
     # Visit the mars nasa news site
@@ -109,7 +96,7 @@ def mars_facts():
     return df.to_html(classes="table table-striped")
     
 
-def scrape_hemispheres(browser):
+def mars_hemispheres(browser):
     # Visit the Astrogeology USGS site:
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
@@ -152,10 +139,7 @@ def scrape_hemispheres(browser):
     # Return the completed list with all 4 hemispheres & titles:
     return hemisphere_list
 
-
 if __name__ == "__main__":
 
     # If running as script, print scraped data using prettyprint:
     print(scrape_all())
-    print(scrape_mars())
-
