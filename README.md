@@ -1,5 +1,5 @@
 # 010_Mission-to-Mars
-Module 10:  Mission to Mars - Web Scraping with HTML/CSS
+Web Scraping of NASA Mars Mission Data using Python with Splinter, BeautifulSoup, Flask, HTML, and MongoDB
 
 # Objectives
 * Use BeautifulSoup and Splinter to automate a web browser and scrape high-resolution images.
